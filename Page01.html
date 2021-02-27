@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form1" action="Page02.html" method="get">
+        <label for="FirstName">Имя:</label><br>
+        <input type="text" name="firstName" id="FirstName" autofocus>
+        <br>
+        <label for="LastName">Фамилия:</label><br>
+        <input type="text" name="lastName" id="LastName">
+        <br>
+        <label for="Password1">Пароль:</label><br>
+        <input type="password" name="password1" id="Password1">
+        <br>
+        <label for="Password2">Подтвердите пароль:</label><br>
+        <input type="password" name="paswword2" id="Password2">
+        <br>
+        <input type="button" value="Послать" onclick="Послать()">
+    </form>
+    <br>
+    <p id="paragraf"></p>
+
+    <script>
+        function Validation() {
+            var s = "<ul>";
+
+            var FirstName = document.getElementById("FirstName").value;
+            if (FirstName == "") {
+                s+= `<li>Введите имя</li>`;
+            }
+
+            var LastName = document.getElementById("LastName").value;
+            if (LastName == "") {
+                s+= `<li>Введите фамилию</li>`;
+            }
+
+            var Password1 = document.getElementById("Password1").value;
+            if (Password1 == "") {
+                s+= `<li>Введите свой пароль</li>`;
+            }
+
+            var Password2 = document.getElementById("Password2").value;
+            if (Password2 == "") {
+                s+= `<li>Подтвердить пароль</li>`;
+            }
+
+            if (Password1 != null && Password2 != null && Password1 != Password2) {
+                s+= `<li>Сертификат не соответствует паролю!</li>`;
+            }
+
+            s+= "</ul>";
+
+            if (s == "<ul></ul>") {
+                return true;
+            } else {
+                var paragraf = document.getElementById("paragraf");
+                paragraf.innerHTML = s;
+                return false;
+            }
+        };
+
+        function Послать() {
+            var form1 = document.getElementById("form1");
+
+            if (Validation() == true) {
+                form1.submit();
+            }
+        }
+    </script>
+</body>
+</html>
